@@ -14,7 +14,7 @@ class LoginForm extends Component {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(this.onLoginSuccess.bind(this))
       .catch(() => {
-        firebase.auth().createUserWithEmailAndPassword()
+        firebase.auth().createUserWithEmailAndPassword(email, password)
           .then(this.onLoginSuccess.bind(this))
           .catch(this.onLoginFail.bind(this));
       });
@@ -74,7 +74,7 @@ class LoginForm extends Component {
           {this.state.error}
         </Text>
 
-        <CardSection onPress={this.onButtonPress.bind(this)}>
+        <CardSection>
           {this.renderButton()}
         </CardSection>
       </Card>
@@ -88,6 +88,6 @@ const styles = {
     alignSelf: 'center',
     color: 'red'
   }
-}
+};
 
 export default LoginForm;
